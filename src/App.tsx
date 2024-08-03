@@ -1,15 +1,5 @@
-// React から useState フックをインポート
-import { useState } from 'react';
-
-// "Todo型" の定義
-type Todo = {
-  value : string;
-  readonly id: number;
-  checked: boolean;
-  removed: boolean;
-}
-
-type Filter = 'all' | 'checked' | 'unchecked' | 'removed';
+import localforage from "localforage";
+import { useState, useEffect } from "react";
 
 export const App = () => {
   // 初期値: 空文字列 ''
@@ -82,6 +72,16 @@ export const App = () => {
     // シャローコピーで事足りる。
     setTodos((todos) => todos.filter((todo) => !todo.removed));
   }
+
+  useEffect(() => {
+    localforage
+      .getItem("todo-20200101")
+      .then((values) => setTodos(values as Todo[]));
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem("todo-20200101", todos);
+  }, [todos]);
 
   return (
     <div>
