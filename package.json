@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/dekinaico/ReactTest",
+  "homepage": "https://dekinaico.github.io/dekinaico/ReactTest",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
